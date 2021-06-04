@@ -86,10 +86,20 @@ public class BinaryTree {
     public static int min(Node root) {
         if (root == null)
             return Integer.MAX_VALUE;
-        int lmax = max(root.left);
-        int rmax = max(root.right);
-        int tm = Math.min(lmax, rmax);
-        return Math.min(tm, root.data);
+        int lmin = min(root.left);
+        int rmin = min(root.right);
+        int tmin = Math.min(lmin, rmin);
+        return Math.min(tmin, root.data);
+    }
+
+    public static int height(Node root) {
+        if (root == null) {
+            return -1;
+        }
+        int leftHeight = height(root.left);
+        int rightHeight = height(root.right);
+        int th = Math.max(leftHeight, rightHeight) + 1;
+        return th;
     }
 
     public static void display(Node root) {
@@ -118,7 +128,8 @@ public class BinaryTree {
         System.out.println(max);
         int min = min(root);
         System.out.println(min);
-
+        int height = height(root);
+        System.out.println(height);
     }
 
     public static void main(String[] args) {
