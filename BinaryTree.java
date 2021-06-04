@@ -58,6 +58,40 @@ public class BinaryTree {
         return root;
     }
 
+    public static int size(Node root) {
+        if (root == null)
+            return 0;
+        int ls = size(root.left);
+        int rs = size(root.right);
+        return ls + rs + 1;
+    }
+
+    public static int sum(Node root) {
+        if (root == null)
+            return 0;
+        int ls = sum(root.left);
+        int rs = sum(root.right);
+        return ls + rs + root.data;
+    }
+
+    public static int max(Node root) {
+        if (root == null)
+            return Integer.MIN_VALUE;
+        int lmax = max(root.left);
+        int rmax = max(root.right);
+        int tm = Math.max(lmax, rmax);
+        return Math.max(tm, root.data);
+    }
+
+    public static int min(Node root) {
+        if (root == null)
+            return Integer.MAX_VALUE;
+        int lmax = max(root.left);
+        int rmax = max(root.right);
+        int tm = Math.min(lmax, rmax);
+        return Math.min(tm, root.data);
+    }
+
     public static void display(Node root) {
         if (root == null)
             return;
@@ -75,7 +109,16 @@ public class BinaryTree {
         Integer[] arr = { 50, 25, 12, null, null, 37, 30, null, null, null, 75, 62, null, 70, null, null, 87, null,
                 null };
         Node root = construct(arr);
-        display(root);
+        // display(root);
+        int size = size(root);
+        System.out.println(size);
+        int sum = sum(root);
+        System.out.println(sum);
+        int max = max(root);
+        System.out.println(max);
+        int min = min(root);
+        System.out.println(min);
+
     }
 
     public static void main(String[] args) {
