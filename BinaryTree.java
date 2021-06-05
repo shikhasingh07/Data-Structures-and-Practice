@@ -115,21 +115,56 @@ public class BinaryTree {
         display(root.right);
     }
 
+    public static void travelsal(Node node) {
+        if (node == null) {
+            return;
+        }
+        System.out.println(node.data + " Pre ");
+        travelsal(node.left);
+        System.out.println(node.data + " In Order ");
+        travelsal(node.right);
+        System.out.println(node.data + " Post ");
+    }
+
+    public static void levelOrder(Node node) {
+        if (node == null) {
+            return;
+        }
+        Queue<Node> mq = new ArrayDeque<>();
+        mq.add(node);
+        while (mq.size() > 0) {
+            int count = mq.size();
+            for (int i = 0; i < count; i++) {
+                node = mq.remove();
+                System.out.print(node.data + " ");
+                if (node.left != null) {
+                    mq.add(node.left);
+                }
+                if (node.right != null) {
+                    mq.add(node.right);
+                }
+            }
+            System.out.println();
+        }
+    }
+
     public static void fun() {
         Integer[] arr = { 50, 25, 12, null, null, 37, 30, null, null, null, 75, 62, null, 70, null, null, 87, null,
                 null };
         Node root = construct(arr);
         // display(root);
-        int size = size(root);
-        System.out.println(size);
-        int sum = sum(root);
-        System.out.println(sum);
-        int max = max(root);
-        System.out.println(max);
-        int min = min(root);
-        System.out.println(min);
-        int height = height(root);
-        System.out.println(height);
+        // int size = size(root);
+        // System.out.println(size);
+        // int sum = sum(root);
+        // System.out.println(sum);
+        // int max = max(root);
+        // System.out.println(max);
+        // int min = min(root);
+        // System.out.println(min);
+        // int height = height(root);
+        // System.out.println(height);
+        // travelsal(root);
+        levelOrder(root);
     }
 
     public static void main(String[] args) {
