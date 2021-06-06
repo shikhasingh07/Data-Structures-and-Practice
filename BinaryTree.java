@@ -244,11 +244,66 @@ public class BinaryTree {
         printKLevelsDown(node.right, k - 1);
     }
 
+    public static ArrayList<Node> nodeToRoot(Node node, int data) {
+        if (node == null) {
+            return new ArrayList<>();
+        }
+
+        if (node.data == data) {
+            ArrayList<Node> bres = new ArrayList<>();
+            bres.add(node);
+            return bres;
+        }
+
+        ArrayList<Node> lres = nodeToRoot(node.left, data);
+        if (lres.size() > 0) {
+            lres.add(node);
+            return lres;
+        }
+
+        ArrayList<Node> rres = nodeToRoot(node.right, data);
+        if (rres.size() > 0) {
+            rres.add(node);
+            return rres;
+        }
+
+        return new ArrayList<>();
+    }
+
+    public static void printKDown(Node node, Node blockage, int k) {
+        if (node == null || node == blockage || k < 0)
+            return;
+
+        if (k == 0) {
+            System.out.println(node.data);
+            return;
+        }
+
+        printKDown(node.left, blockage, k - 1);
+        printKDown(node.right, blockage, k - 1);
+    }
+
+    public static void printKnodefar(Node node, int data, int k) {
+        ArrayList<Node> path = nodeToRoot(node, data);
+
+        Node blockage = null;
+        for (int i = 0; i < path.size() && k >= 0; i++) {
+            Node root = path.get(i);
+            printKDown(root, blockage, k);
+            k--;
+            blockage = root;
+        }
+    }
+
+    public static void pathToLeafFromRoot(Node node, String path, int sum, int lo, int hi) {
+        // write your code here
+    }
+
     public static void fun() {
         Integer[] arr = { 50, 25, 12, null, null, 37, 30, null, null, null, 75, 62, null, 70, null, null, 87, null,
                 null };
         Node root = construct(arr);
-        int find = 87;
+        int find = 37;
         // display(root);
         // int size = size(root);
         // System.out.println(size);
@@ -267,8 +322,9 @@ public class BinaryTree {
         // System.out.println(fin);
         // ArrayList<Integer> ans = nodeTopath(root, find);
         // System.out.println(ans);
-        int k = 1;
-        printKLevelsDown(root, k);
+        int k = 2;
+        // printKLevelsDown(root, k);
+        printKnodefar(root, find, k);
 
     }
 
