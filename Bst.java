@@ -1,4 +1,4 @@
-import java.util.*;
+// import java.util.*;
 
 public class Bst {
     public static class Node {
@@ -34,19 +34,92 @@ public class Bst {
         if (node == null) {
             return;
         }
-        System.out.print(node.data + "first" + " ");
-        display(node.left);
-        System.out.print(node.data + "Mid" + " ");
-        display(node.right);
-        System.out.print(node.data + "Last" + " ");
 
+        String res = node.left != null ? node.left.data + " " : " . ";
+        res += node.data + " ";
+        res += node.right != null ? node.right.data + " " : " . ";
+        System.out.println(res + " ");
+        display(node.left);
+        display(node.right);
+
+    }
+
+    public static int size(Node root) {
+        if (root == null) {
+            return 0;
+        }
+
+        int left = size(root.left);
+        int right = size(root.right);
+
+        return left + right + 1;
+    }
+
+    public static int sum(Node root) {
+        if (root == null) {
+            return 0;
+        }
+
+        int left = sum(root.left);
+        int right = sum(root.right);
+
+        return left + right + root.data;
+    }
+
+    public static int max(Node root) {
+        if (root == null) {
+            return Integer.MIN_VALUE;
+        }
+        if (root.right == null) {
+            return root.data;
+        }
+        int max = max(root.right);
+        return max;
+    }
+
+    public static int min(Node root) {
+        if (root == null) {
+            return Integer.MAX_VALUE;
+        }
+        if (root.right == null) {
+            return root.data;
+        }
+        int min = min(root.left);
+        return min;
+    }
+
+    public static boolean find(Node root, int num) {
+        if (root == null) {
+            return false;
+        }
+
+        if (root.data == num) {
+            return true;
+        }
+        boolean f1 = find(root.left, num);
+        if (f1) {
+            return true;
+        }
+        boolean f2 = find(root.right, num);
+        if (f2) {
+            return true;
+        }
+        return false;
     }
 
     public static void fun() {
         int[] data = { 10, 20, 30, 40, 50, 60, 70, 80, 90 };
 
         Node root = construct(data, 0, data.length - 1);
-        display(root);
+        // display(root);
+        int size = size(root);
+        int sum = sum(root);
+        int max = max(root);
+        int min = min(root);
+        int num = 57;
+        boolean find = find(root, num);
+        System.out.println(
+                "size :- " + size + " sum :- " + sum + " max :- " + max + " min :- " + min + " find :- " + find);
     }
 
     public static void main(String[] args) {
