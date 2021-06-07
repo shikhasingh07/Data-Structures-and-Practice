@@ -107,6 +107,19 @@ public class Bst {
         return false;
     }
 
+    public static Node add(Node root, int newNumber) {
+        if (root == null) {
+            Node nn = new Node(newNumber);
+            return nn;
+        }
+        if (root.data > newNumber) {
+            root.right = add(root.left, newNumber);
+        } else if (root.data < newNumber) {
+            root.left = add(root.right, newNumber);
+        }
+        return root;
+    }
+
     public static void fun() {
         int[] data = { 10, 20, 30, 40, 50, 60, 70, 80, 90 };
 
@@ -117,9 +130,12 @@ public class Bst {
         int max = max(root);
         int min = min(root);
         int num = 57;
+        int newNumber = 61;
         boolean find = find(root, num);
+        Node add = add(root, newNumber);
         System.out.println(
                 "size :- " + size + " sum :- " + sum + " max :- " + max + " min :- " + min + " find :- " + find);
+        display(root);
     }
 
     public static void main(String[] args) {
