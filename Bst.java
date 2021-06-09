@@ -120,6 +120,20 @@ public class Bst {
         return root;
     }
 
+    // 10/6/2021
+    static int sum = 0;
+
+    public static void rwsol(Node node) {
+        if (node == null) {
+            return;
+        }
+        rwsol(node.right);
+        int data = node.data;
+        node.data = sum;
+        sum += data;
+        rwsol(node.left);
+    }
+    public static int lca (Node )
     public static void fun() {
         int[] data = { 10, 20, 30, 40, 50, 60, 70, 80, 90 };
 
@@ -133,8 +147,10 @@ public class Bst {
         int newNumber = 61;
         boolean find = find(root, num);
         Node add = add(root, newNumber);
-        System.out.println(
-                "size :- " + size + " sum :- " + sum + " max :- " + max + " min :- " + min + " find :- " + find);
+        rwsol(root);
+        // System.out.println(
+        // "size :- " + size + " sum :- " + sum + " max :- " + max + " min :- " + min +
+        // " find :- " + find);
         display(root);
     }
 

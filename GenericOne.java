@@ -1,7 +1,5 @@
 import java.util.*;
 
-import jdk.internal.net.http.common.Pair;
-
 public class GenericOne {
     public static class Node {
         int data;

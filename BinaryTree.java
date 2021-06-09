@@ -297,13 +297,25 @@ public class BinaryTree {
 
     public static void pathToLeafFromRoot(Node node, String path, int sum, int lo, int hi) {
         // write your code here
+        if (node == null) {
+            return;
+        }
+        if (node.left == null && node.right == null) {
+            sum += node.data;
+            if (sum >= lo && sum <= hi) {
+                System.out.println(path + node.data);
+            }
+            return;
+        }
+        pathToLeafFromRoot(node.left, path + node.data + " ", sum + node.data, lo, hi);
+        pathToLeafFromRoot(node.right, path + node.data + " ", sum + node.data, lo, hi);
     }
 
     public static void fun() {
         Integer[] arr = { 50, 25, 12, null, null, 37, 30, null, null, null, 75, 62, null, 70, null, null, 87, null,
                 null };
         Node root = construct(arr);
-        int find = 37;
+        // int find = 37;
         // display(root);
         // int size = size(root);
         // System.out.println(size);
@@ -322,9 +334,12 @@ public class BinaryTree {
         // System.out.println(fin);
         // ArrayList<Integer> ans = nodeTopath(root, find);
         // System.out.println(ans);
-        int k = 2;
+        // int k = 2;
         // printKLevelsDown(root, k);
-        printKnodefar(root, find, k);
+        // printKnodefar(root, find, k);
+        int lo = 125;
+        int hi = 250;
+        pathToLeafFromRoot(root, "", 0, lo, hi);
 
     }
 
