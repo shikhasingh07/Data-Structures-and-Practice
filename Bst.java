@@ -133,7 +133,20 @@ public class Bst {
         sum += data;
         rwsol(node.left);
     }
-    public static int lca (Node )
+
+    public static int lca(Node node, int d1, int d2) {
+        if (node == null){
+            return 
+        }
+        if (d1 > node.data && d2 > node.data) { // right side
+            return lca(node.right, d1, d2);
+        } else if (d1 < node.data && d2 < node.data) { // left side
+            return lca(node.left, d1, d2);
+        } else { // answer
+            return node.data;
+        }
+    }
+
     public static void fun() {
         int[] data = { 10, 20, 30, 40, 50, 60, 70, 80, 90 };
 
@@ -148,10 +161,12 @@ public class Bst {
         boolean find = find(root, num);
         Node add = add(root, newNumber);
         rwsol(root);
-        // System.out.println(
-        // "size :- " + size + " sum :- " + sum + " max :- " + max + " min :- " + min +
-        // " find :- " + find);
-        display(root);
+        int d1 = 20;
+        int d2 = 40;
+        int res = lca(root, d1, d2);
+        System.out.println("size :- " + size + " sum :- " + sum + " max :- " + max + " min :- " + min + " find :- "
+                + find + " Lca :- " + res);
+        // display(root);
     }
 
     public static void main(String[] args) {
