@@ -62,7 +62,7 @@ public class Rfun {
         int rev = 0;
         int p = 1;
         int c = 0;
-        
+
         while (n2 != 0) {
             int d1 = n1 % 10;
             n1 /= 10;

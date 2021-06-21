@@ -130,7 +130,7 @@ public class BinaryTree {
         if (node == null) {
             return;
         }
-        Queue<Node> mq = new ArrayDeque<>();
+        queuesF<Node> mq = new ArrayDeque<>();
         mq.add(node);
         while (mq.size() > 0) {
             int count = mq.size();
