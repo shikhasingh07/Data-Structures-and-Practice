@@ -2,7 +2,8 @@ import java.util.*;
 import java.io.*;
 
 public class Main {
-
+ 
+  //pepcoding 
   public static void longestConsecutiveSquence(int[] arr , HashMap<Integer , Boolean> has ) {
     
     for (int val : arr){
