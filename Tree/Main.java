@@ -115,9 +115,37 @@ public class Main{
      return false; 
     }
     public static ArrayList<Integer> nodeToRootPath(Node node, int data){
-    // write your code here
+    if(node == null)return new ArrayList<>(); 
+    if(node.data == data){
+      ArrayList<Integer> bres = new ArrayList<>();
+      bres.add(node.data);
+      return bres;
     }
-	public static void main(String[] args) {
+    ArrayList<Integer> les = nodeToRootPath(node.left , data); 
+    if(les.size()>0){
+      les.add(node.data); 
+      return les; 
+    }
+    
+    ArrayList<Integer> res = nodeToRootPath(node.right , data); 
+    if(res.size()>0){
+        res.add(node.data); 
+        return res; 
+    }
+    return new ArrayList<>();
+    }
+    
+    public static void printKLevelsDown(Node node, int k){
+    if (node == null) return; 
+    
+    if(k==0){
+        System.out.println(node.data);
+        return; 
+    }
+    printKLevelsDown(node.left , k-1); 
+    printKLevelsDown(node.right , k-1);
+    }
+    public static void main(String[] args) {
 		Integer[] arr = {50 , 25 , 12 , null , null , 37 , 30 , null , null , null , 75 , 62 , null, 70 , null ,null ,80, null ,null};
 		Node root = new Node(arr[0] , null , null); 
 		Stack<Pair> st = new Stack<>(); 
@@ -161,13 +189,12 @@ public class Main{
 // 		int ht = height(root);
 // 		System.out.println(ht);
 // 		display(root);
-//      iterativePrePostInTraversal(root); 
-//      levelOrder(root);
-        int data = 70; 
-        boolean found = find(root, data);
-        System.out.println(found);
-
-        ArrayList<Integer> path = nodeToRootPath(root, data);
-        System.out.println(path);
+//              iterativePrePostInTraversal(root); 
+//              levelOrder(root);
+//              int data = 70; 
+//              boolean found = find(root, data);
+//              System.out.println(found);
+//              ArrayList<Integer> path = nodeToRootPath(root, data);
+//              System.out.println(path);
 	}
 }
