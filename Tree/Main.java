@@ -219,7 +219,29 @@ public static int tilte(Node node) {
 	tilt += local;
 	return lsum + rsum + node.data;
 }
-		
+	 public static class BstPair{
+        boolean isBst; 
+        int min ; 
+        int max ;
+    }
+    public static BstPair isBst(Node node){
+        if(node == null) {
+            BstPair newPair = new BstPair(); 
+            newPair.min = Integer.MAX_VALUE; 
+            newPair.max = Integer.MIN_VALUE; 
+            newPair.isBst = true; 
+            return newPair; 
+        }
+        BstPair lp = isBst(node.left);
+        BstPair rp = isBst(node.right); 
+        
+        BstPair mp = new BstPair(); 
+        mp.isBst = lp.isBst && rp.isBst && (node.data >= lp.max && node.data <= rp.max);
+        
+        mp.min = Math.min(node.data , Math.min(lp.min , rp.min));
+        mp.max = Math.max(node.data , Math.max(lp.max , rp.max)); 
+        return mp;
+    }	
 	public static void main(String[] args) {
 		Integer[] arr = {50 , 25 , 12 , null , null , 37 , 30 , null , null ,40,null,null , 75 , 62 , 60,null,null, 70 , null ,null ,80, null ,null};
 		Node root = new Node(arr[0] , null , null); 
@@ -285,5 +307,7 @@ public static int tilte(Node node) {
         //  display(root);
         // tilte(root);
         // System.out.println(tilt); 
+				//  BstPair isBst = isBst(root); 
+        // System.out.println(isBst.isBst);
 }
 }
