@@ -177,6 +177,49 @@ public static void display(Node node) {
     	node.right = rcr;
     	return node;
     }
+	public static Node transBackFromLeftClonedTree(Node node) {
+	if (node == null) {
+		return null;
+	}
+	Node ln = transBackFromLeftClonedTree(node.left.left);
+	Node rn = transBackFromLeftClonedTree(node.right);
+
+	node.left = ln;
+	node.right = rn;
+	return node;
+}
+public static void printSingleChildNodes(Node node, Node parent) {
+	// write your code here
+	if (node == null) return;
+	if (parent != null && parent.left == node && parent.right == null) {
+		System.out.println(node.data);
+	}
+	else if (parent != null && parent.right == node && parent.left == null) {
+		System.out.println(node.data);
+	}
+
+	printSingleChildNodes(node.left, node);
+	printSingleChildNodes(node.right, node);
+}
+public static Node removeLeaves(Node node) {
+	if (node == null) return null;
+	if (node.left == null && node.right == null) return null;
+	node.left = removeLeaves(node.left);
+	node.right = removeLeaves(node.right);
+	return node;
+}
+static int tilt = 0;
+public static int tilte(Node node) {
+	if (node == null) return 0;
+
+	int lsum = tilte(node.left);
+	int rsum = tilte(node.right);
+
+	int local = Math.abs(lsum - rsum);
+	tilt += local;
+	return lsum + rsum + node.data;
+}
+		
 	public static void main(String[] args) {
 		Integer[] arr = {50 , 25 , 12 , null , null , 37 , 30 , null , null ,40,null,null , 75 , 62 , 60,null,null, 70 , null ,null ,80, null ,null};
 		Node root = new Node(arr[0] , null , null); 
@@ -234,5 +277,13 @@ public static void display(Node node) {
         // int hi = 250;
         // pathToLeafFromRoot(root," ", 0 ,lo,hi); 
         // createLeftCloneTree(root);
+				// display(root);
+        // transBackFromLeftClonedTree(root); 
+        // display(root);
+        // printSingleChildNodes(root, null);
+        //  removeLeaves(root);
+        //  display(root);
+        // tilte(root);
+        // System.out.println(tilt); 
 }
 }
