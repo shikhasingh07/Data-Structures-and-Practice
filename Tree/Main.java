@@ -71,7 +71,6 @@ public class Main {
 	}
 	public static void levelOrder(Node node) {
 		// write your code here
-
 		Queue < Node > qe = new ArrayDeque < >();
 		qe.add(node);
 
@@ -219,29 +218,27 @@ public class Main {
 		tilt += local;
 		return lsum + rsum + node.data;
 	}
-	public static class BstPair {
-		boolean isBst;
-		int min;
-		int max;
-	}
-	public static BstPair isBst(Node node) {
-		if (node == null) {
-			BstPair newPair = new BstPair();
-			newPair.min = Integer.MAX_VALUE;
-			newPair.max = Integer.MIN_VALUE;
-			newPair.isBst = true;
-			return newPair;
-		}
-		BstPair lp = isBst(node.left);
-		BstPair rp = isBst(node.right);
-
-		BstPair mp = new BstPair();
-		mp.isBst = lp.isBst && rp.isBst && (node.data >= lp.max && node.data <= rp.max);
-
-		mp.min = Math.min(node.data, Math.min(lp.min, rp.min));
-		mp.max = Math.max(node.data, Math.max(lp.max, rp.max));
-		return mp;
-	}
+	// public static class BstPair{
+	//     boolean isBst; 
+	//     int min ; 
+	//     int max ;
+	// }
+	// public static BstPair isBst(Node node){
+	//     if(node == null) {
+	//         BstPair newPair = new BstPair(); 
+	//         newPair.min = Integer.MAX_VALUE; 
+	//         newPair.max = Integer.MIN_VALUE; 
+	//         newPair.isBst = true; 
+	//         return newPair; 
+	//     }
+	//     BstPair lp = isBst(node.left);
+	//     BstPair rp = isBst(node.right); 
+	//     BstPair mp = new BstPair(); 
+	//     mp.isBst = lp.isBst && rp.isBst && (node.data >= lp.max && node.data <= rp.min);
+	//     mp.min = Math.min(node.data , Math.min(lp.min , rp.min));
+	//     mp.max = Math.max(node.data , Math.max(lp.max , rp.max)); 
+	//     return mp;
+	// }
 	static boolean isBal = true;
 	public static int isBalanced(Node node) {
 		if (node == null) return 0;
@@ -365,24 +362,24 @@ public class Main {
 				st.pop();
 			}
 		}
-		// 		int sum = sum(root);
-		// 		System.out.println(sum);
-		// 		int size = size(root);
-		// 		System.out.println(size);
-		// 		int max = max(root);
-		// 		System.out.println(max);
-		// 		int ht = height(root);
-		// 		System.out.println(ht);
-		// 		display(root);
-		//      iterativePrePostInTraversal(root); 
-		//      levelOrder(root);
-		//      int data = 70; 
-		//      boolean found = find(root, data);
-		//      System.out.println(found);
-		//      ArrayList<Integer> path = nodeToRootPath(root, data);
-		//      System.out.println(path);
-		//      int k = 2; 
-		//      printKLevelsDown(root, k);
+		// 		   int sum = sum(root);
+		// 		   System.out.println(sum);
+		// 		   int size = size(root);
+		// 		   System.out.println(size);
+		// 		   int max = max(root);
+		// 		   System.out.println(max);
+		// 		   int ht = height(root);
+		// 		   System.out.println(ht);
+		// 		   display(root);
+		//         iterativePrePostInTraversal(root); 
+		//         levelOrder(root);
+		//         int data = 70; 
+		//         boolean found = find(root, data);
+		//         System.out.println(found);
+		//         ArrayList<Integer> path = nodeToRootPath(root, data);
+		//         System.out.println(path);
+		// int k = 2; 
+		// printKLevelsDown(root, k);
 		// int lo = 150;
 		// int hi = 250;
 		// pathToLeafFromRoot(root," ", 0 ,lo,hi); 
@@ -391,14 +388,18 @@ public class Main {
 		// transBackFromLeftClonedTree(root); 
 		// display(root);
 		// printSingleChildNodes(root, null);
-		//  removeLeaves(root);
-		//  display(root);
+		// removeLeaves(root);
+		// display(root);
 		// tilte(root);
 		// System.out.println(tilt); 
-		//  BstPair isBst = isBst(root); 
+		// BstPair isBst = isBst(root); 
 		// System.out.println(isBst.isBst);
+		// isBalanced(root); 
+		// System.out.print(isBal);
+		// BstPair isBst = isBst(root);
 		// System.out.print(isBst.isroot.data+ "@"+ isBst.size); 
-	       heightForDiameter(root); 
-	       System.out.println(diameter);
+		heightForDiameter(root);
+		System.out.println(diameter);
+
 	}
 }
